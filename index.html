@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header class="header">
+            <div class="logo">⛅ WeatherDash by Vinayak</div>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                🌙 Dark Mode
+            </button>
+        </header>
+
+        <div class="search-section">
+            <form class="search-form" onsubmit="searchWeather(event)">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Enter city name..." 
+                    id="cityInput"
+                    required
+                >
+                <button type="submit" class="search-btn" id="searchBtn">
+                    🔍 Search
+                </button>
+                <div class="unit-toggle">
+                    <button type="button" class="unit-btn active" onclick="setUnit('metric')" data-unit="metric">°C</button>
+                    <button type="button" class="unit-btn" onclick="setUnit('imperial')" data-unit="imperial">°F</button>
+                </div>
+            </form>
+
+            <div class="recent-searches" id="recentSearches">
+                <h3>Recent Searches</h3>
+                <div class="recent-tags" id="recentTags">
+                    <!-- Recent searches will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="weatherContent" class="hidden">
+            <div class="weather-grid">
+                <div class="current-weather">
+                    <div class="weather-header">
+                        <div>
+                            <h2 id="cityName">Loading...</h2>
+                            <p id="currentDate"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-main">
+                        <div class="weather-icon" id="weatherIcon">
+                            ☀️
+                        </div>
+                        <div class="weather-info">
+                            <h1 id="temperature">--°</h1>
+                            <h2 id="condition">Loading...</h2>
+                            <p id="feelsLike">Feels like --°</p>
+                        </div>
+                    </div>
+
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <h4>Humidity</h4>
+                            <p id="humidity">--%</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Wind Speed</h4>
+                            <p id="windSpeed">-- km/h</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Pressure</h4>
+                            <p id="pressure">-- hPa</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Visibility</h4>
+                            <p id="visibility">-- km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sun-times">
+                    <h3>🌅 Sun Times</h3>
+                    <div class="sun-item">
+                        <div class="sun-icon">🌅</div>
+                        <div>
+                            <h4>Sunrise</h4>
+                            <p id="sunrise">--:--</p>
+                        </div>
+                    </div>
+                    <div class="sun-item">
+                        <div class="sun-icon">🌇</div>
+                        <div>
+                            <h4>Sunset</h4>
+                            <p id="sunset">--:--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-section">
+                <h3>📅 3-Day Forecast</h3>
+                <div class="forecast-grid" id="forecastGrid">
+                    <!-- Forecast cards will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingState" class="loading hidden">
+            <div class="spinner"></div>
+            Fetching weather data...
+        </div>
+
+        <div id="errorState" class="error hidden">
+            <p>Unable to fetch weather data. Please check the city name and try again.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
